@@ -1,0 +1,72 @@
+[
+  {
+    "artist": "Future",
+    "title": "Mask Off",
+    "cover": "./assets/image.png",
+    "duration": "3:27",
+    "mp3": "https://cdns-preview-7.dzcdn.net/stream/7d928b6c28a5a5c470cda1d2e5b9c4d3-3.mp3"
+  },
+  {
+    "artist": "Drake",
+    "title": "God's Plan",
+    "cover": "https://e-cdns-images.dzcdn.net/images/cover/7bd7b2545c9283e68a77a51150c5a0f6/500x500-000000-80-0-0.jpg",
+    "duration": "3:24",
+    "mp3": "https://cdns-preview-5.dzcdn.net/stream/5d5d1a7b5c5c5d5c5d5c5d5c5d5c5d5c-2.mp3"
+  },
+  {
+    "artist": "Migos",
+    "title": "Bad and Boujee",
+    "cover": "https://e-cdns-images.dzcdn.net/images/cover/5e8b25cba3d94a5cfa973e0f2139d7a7/500x500-000000-80-0-0.jpg",
+    "duration": "3:43",
+    "mp3": "https://cdns-preview-3.dzcdn.net/stream/3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d-1.mp3"
+  },
+  {
+    "artist": "Drake ft. Future",
+    "title": "Life Is Good",
+    "cover": "https://e-cdns-images.dzcdn.net/images/cover/9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b/500x500-000000-80-0-0.jpg",
+    "duration": "3:58",
+    "mp3": "https://cdns-preview-9.dzcdn.net/stream/9d9d9d9d9d9d9d9d9d9d9d9d9d9d9d9d-4.mp3"
+  },
+  {
+    "artist": "Travis Scott",
+    "title": "SICKO MODE",
+    "cover": "https://e-cdns-images.dzcdn.net/images/cover/4b4b4b4b4b4b4b4b4b4b4b4b4b4b4b4b/500x500-000000-80-0-0.jpg",
+    "duration": "4:12",
+    "mp3": "https://cdns-preview-6.dzcdn.net/stream/6d6d6d6d6d6d6d6d6d6d6d6d6d6d6d6d-5.mp3"
+  },
+  {
+    "artist": "Lil Baby",
+    "title": "Drip Too Hard",
+    "cover": "https://e-cdns-images.dzcdn.net/images/cover/7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c/500x500-000000-80-0-0.jpg",
+    "duration": "2:59",
+    "mp3": "https://cdns-preview-8.dzcdn.net/stream/8d8d8d8d8d8d8d8d8d8d8d8d8d8d8d8d-6.mp3"
+  },
+  {
+    "artist": "Future ft. Drake",
+    "title": "Wait For U",
+    "cover": "https://e-cdns-images.dzcdn.net/images/cover/1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a/500x500-000000-80-0-0.jpg",
+    "duration": "3:09",
+    "mp3": "https://cdns-preview-2.dzcdn.net/stream/2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d-7.mp3"
+  },
+  {
+    "artist": "Migos ft. Lil Uzi Vert",
+    "title": "Bad and Boujee",
+    "cover": "https://e-cdns-images.dzcdn.net/images/cover/3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c/500x500-000000-80-0-0.jpg",
+    "duration": "3:52",
+    "mp3": "https://cdns-preview-4.dzcdn.net/stream/4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d-8.mp3"
+  },
+  {
+    "artist": "Drake",
+    "title": "Hotline Bling",
+    "cover": "https://e-cdns-images.dzcdn.net/images/cover/5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d/500x500-000000-80-0-0.jpg",
+    "duration": "3:29",
+    "mp3": "https://cdns-preview-1.dzcdn.net/stream/1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d-9.mp3"
+  },
+  {
+    "artist": "Future",
+    "title": "March Madness",
+    "cover": "https://e-cdns-images.dzcdn.net/images/cover/6e6e6e6e6e6e6e6e6e6e6e6e6e6e6e6e/500x500-000000-80-0-0.jpg",
+    "duration": "4:07",
+    "mp3": "https://cdns-preview-0.dzcdn.net/stream/0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d-10.mp3"
+  }
+]
