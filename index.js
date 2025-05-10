@@ -86,30 +86,80 @@ function setupEventListeners() {
 }
 
 // Music Playback Functions
-function playSong(song, context = "library", playlist = null) {
+// function playSong(song, context = "library", playlist = null) {
+//   showLoading();
+
+//   try {
+//     // Add to recents
+//     addToRecents(song);
+
+//     if (currentAudio && currentAudio.src === song.mp3) {
+//       togglePlayPause();
+//       hideLoading();
+//       return;
+//     }
+
+//     if (currentAudio) {
+//       currentAudio.pause();
+//       currentAudio = null;
+//     }
+
+//     currentAudio = new Audio(song.mp3);
+//     currentAudio.crossOrigin = "anonymous";
+//     currentPlaylist = playlist; // Set current playlist
+
+//     currentAudio.volume = volumeSlider.value / 100;
+//     updateCurrentTrackInfo(song);
+//     updatePlayButton(true);
+
+//     currentAudio
+//       .play()
+//       .then(() => {
+//         isPlaying = true;
+//         hideLoading();
+//       })
+//       .catch((error) => {
+//         showError("Failed to play audio");
+//         hideLoading();
+//       });
+
+//     currentAudio.addEventListener("timeupdate", updateProgress);
+//     currentAudio.addEventListener("ended", () => handleTrackEnd(playlist));
+//     currentAudio.addEventListener("error", handleAudioError);
+//   } catch (error) {
+//     showError("Error initializing audio player");
+//     hideLoading();
+//   }
+// }
+
+async function playSong(song, context = "library", playlist = null) {
   showLoading();
 
   try {
-    // Add to recents
+    // Add to recents (store the full song object)
     addToRecents(song);
 
-    if (currentAudio && currentAudio.src === song.mp3) {
+    // Check if same song is already playing
+    if (currentAudio && currentAudio.src === (song.preview || song.mp3)) {
       togglePlayPause();
       hideLoading();
       return;
     }
 
-    if (currentAudio) {
-      currentAudio.pause();
-      currentAudio = null;
-    }
+    stopCurrentPlayback();
 
-    currentAudio = new Audio(song.mp3);
-    currentPlaylist = playlist; // Set current playlist
+    // Use preview URL if available, fallback to mp3
+    const audioUrl = song.preview || song.mp3;
+    currentAudio = new Audio(audioUrl);
+    currentAudio.crossOrigin = "anonymous";
+    currentPlaylist = playlist;
 
     currentAudio.volume = volumeSlider.value / 100;
     updateCurrentTrackInfo(song);
     updatePlayButton(true);
+
+    // Setup event listeners before playing
+    setupAudioEventListeners(playlist);
 
     currentAudio
       .play()
@@ -118,16 +168,41 @@ function playSong(song, context = "library", playlist = null) {
         hideLoading();
       })
       .catch((error) => {
+        console.error("Playback error:", error);
         showError("Failed to play audio");
         hideLoading();
       });
-
-    currentAudio.addEventListener("timeupdate", updateProgress);
-    currentAudio.addEventListener("ended", () => handleTrackEnd(playlist));
-    currentAudio.addEventListener("error", handleAudioError);
   } catch (error) {
-    showError("Error initializing audio player");
+    console.error("PlaySong error:", error);
+    showError("Error playing song");
     hideLoading();
+  }
+}
+
+function setupAudioEventListeners(playlist) {
+  if (!currentAudio) return;
+
+  currentAudio.addEventListener("timeupdate", updateProgress);
+  currentAudio.addEventListener("ended", () => handleTrackEnd(playlist));
+  currentAudio.addEventListener("error", handleAudioError);
+}
+
+async function fetchSongData(songId) {
+  try {
+    const response = await fetch(`https://api.deezer.com/track/${songId}`);
+    const data = await response.json();
+    return {
+      id: data.id,
+      title: data.title,
+      artist: data.artist.name,
+      cover: data.album.cover_medium,
+      duration: data.duration,
+      preview: data.preview,
+      mp3: data.preview,
+    };
+  } catch (error) {
+    console.error("Failed to fetch song:", error);
+    return null;
   }
 }
 function togglePlayPause() {
@@ -301,7 +376,7 @@ function showError(message) {
 // Data Management
 async function fetchData() {
   try {
-    const response = await fetch("http://localhost:3000/deezer");
+    const response = await fetch("/api/deezer");
     if (!response.ok) throw new Error("Failed to fetch songs");
     const data = await response.json();
     return data.data.map((track) => ({
@@ -422,15 +497,30 @@ function createNewPlaylist() {
 
 function addToPlaylist(playlistId, song) {
   const playlist = playlists.find((p) => p.id === playlistId);
-  if (playlist && !playlist.songs.some((s) => s.mp3 === song.mp3)) {
-    playlist.songs.push(song);
-    localStorage.setItem("playlists", JSON.stringify(playlists));
-    if (currentPlaylist?.id === playlistId) {
-      renderMusicCards(currentPlaylist.songs);
+  if (playlist) {
+    // Check using ID instead of mp3 URL to avoid duplicate issues
+    if (!playlist.songs.some((s) => s.id === song.id)) {
+      // Store the complete song object with all necessary fields
+      playlist.songs.push({
+        id: song.id,
+        title: song.title,
+        artist: song.artist,
+        cover: song.cover,
+        duration: song.duration,
+        formattedDuration: song.formattedDuration,
+        mp3: song.preview, // Use preview URL as mp3
+        preview: song.preview,
+      });
+      localStorage.setItem("playlists", JSON.stringify(playlists));
+
+      if (currentPlaylist?.id === playlistId) {
+        renderMusicCards(currentPlaylist.songs);
+      }
+      return true;
     }
   }
+  return false;
 }
-
 // Playlist Rendering
 function renderPlaylists() {
   playlistList.innerHTML = playlists
@@ -469,11 +559,11 @@ function renderPlaylists() {
   });
 
   document.querySelectorAll(".play-playlist").forEach((btn, index) => {
-    btn.addEventListener("click", (e) => {
+    btn.addEventListener("click", async (e) => {
       e.stopPropagation();
       const playlist = playlists[index];
       if (playlist.songs.length > 0) {
-        playlist.currentIndex = 0;
+        // Use the first song in playlist exactly as stored
         playSong(playlist.songs[0], "playlist", playlist);
       }
     });
