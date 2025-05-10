@@ -679,4 +679,4 @@
 //   }
 // }
 
-import "./utils/app";
+import "./utils/app.js";

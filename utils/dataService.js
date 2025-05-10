@@ -4,6 +4,7 @@ import { showError } from "./ui.js";
 export const fetchData = async () => {
   try {
     const res = await fetch("/api/deezer");
+    // const res = await fetch("https://api.deezer.com/chart/0/tracks?limit=10");
     if (!res.ok) throw new Error("Network response was not ok");
     const { data } = await res.json();
     return data.map(
