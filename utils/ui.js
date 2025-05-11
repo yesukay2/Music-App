@@ -45,6 +45,22 @@ export const updatePlayButtons = () => {
   });
 };
 
+export const updatePlayButton = (playing, index = null) => {
+  const cards = document.querySelectorAll(".music-card");
+
+  cards.forEach((card, i) => {
+    const icon = card.querySelector(".play-btn i");
+
+    if (index !== null && i === index) {
+      icon.classList.toggle("fa-play", !playing);
+      icon.classList.toggle("fa-pause", playing);
+    } else {
+      icon.classList.remove("fa-pause");
+      icon.classList.add("fa-play");
+    }
+  });
+};
+
 export const updateCurrentTrackInfo = (song) => {
   const ctr = document.querySelector(".current-track");
   ctr.querySelector("img").src = song.cover || "./assets/default-cover.png";
@@ -74,7 +90,8 @@ export const renderMusicCards = (songs, context = state.currentContext) => {
   grid.innerHTML = "";
 
   songs.forEach((song) => {
-    const isCurrent = state.currentAudio?.src === song.mp3;
+    //   const isCurrent = state.currentAudio?.src === song.mp3;
+    const isCurrent = state.currentAudio?.src.includes(song.mp3);
     const card = document.createElement("div");
     card.className = "music-card";
     card.innerHTML = `

@@ -4,6 +4,7 @@ import {
   hideLoading,
   showError,
   updateCurrentTrackInfo,
+  updatePlayButton,
   updatePlayButtons,
   updateProgress,
 } from "./ui.js";
@@ -36,7 +37,12 @@ export const playSong = async (
     state.currentPlaylist = playlist;
     audio.volume = document.querySelector(".volume-slider").value / 100;
     updateCurrentTrackInfo(song);
-    updatePlayButtons();
+    // updatePlayButtons();
+    updatePlayButton(
+      true,
+      songs.findIndex((s) => s.mp3 === song.mp3)
+    );
+
     setupAudioEventListeners(playlist);
     await audio.play();
     state.isPlaying = true;
@@ -61,7 +67,11 @@ export const togglePlayPause = () => {
     state.isPlaying = true;
   }
 
-  updatePlayButtons();
+  //   updatePlayButtons();
+  updatePlayButton(
+    true,
+    songs.findIndex((s) => s.mp3 === song.mp3)
+  );
 };
 
 export const stopCurrentPlayback = () => {
@@ -102,5 +112,9 @@ export const handleTrackEnd = (playlist) => {
 export const handleAudioError = () => {
   showError("Error playing audio track");
   state.isPlaying = false;
-  updatePlayButtons();
+  //   updatePlayButtons();
+  updatePlayButton(
+    true,
+    songs.findIndex((s) => s.mp3 === song.mp3)
+  );
 };
