@@ -38,10 +38,9 @@ export const playSong = async (
     audio.volume = document.querySelector(".volume-slider").value / 100;
     updateCurrentTrackInfo(song);
     // updatePlayButtons();
-    updatePlayButton(
-      true,
-      songs.findIndex((s) => s.mp3 === song.mp3)
-    );
+    const currentList = getCurrentSongList();
+    const index = currentList.findIndex((s) => s.mp3 === song.mp3);
+    updatePlayButton(true, index);
 
     setupAudioEventListeners(playlist);
     await audio.play();
@@ -68,10 +67,9 @@ export const togglePlayPause = () => {
   }
 
   //   updatePlayButtons();
-  updatePlayButton(
-    true,
-    songs.findIndex((s) => s.mp3 === song.mp3)
-  );
+  const currentList = getCurrentSongList();
+  const index = currentList.findIndex((s) => s.mp3 === song.mp3);
+  updatePlayButton(true, index);
 };
 
 export const stopCurrentPlayback = () => {
@@ -113,8 +111,7 @@ export const handleAudioError = () => {
   showError("Error playing audio track");
   state.isPlaying = false;
   //   updatePlayButtons();
-  updatePlayButton(
-    true,
-    songs.findIndex((s) => s.mp3 === song.mp3)
-  );
+  const currentList = getCurrentSongList();
+  const index = currentList.findIndex((s) => s.mp3 === song.mp3);
+  updatePlayButton(true, index);
 };
