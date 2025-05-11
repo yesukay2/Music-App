@@ -47,7 +47,7 @@ export const updatePlayButtons = () => {
 
 export const updatePlayButton = (playing, index = null) => {
   const cards = document.querySelectorAll(".music-card");
-  const trackBarIcon = document.querySelector(".track-controls .play-btn i");
+  const trackBarIcon = document.querySelector(".control-btn.play i");
   if (trackBarIcon) {
     trackBarIcon.classList.remove("fa-play", "fa-pause");
     trackBarIcon.classList.add(state.isPlaying ? "fa-pause" : "fa-play");
