@@ -66,10 +66,10 @@ export const togglePlayPause = () => {
     state.isPlaying = true;
   }
 
-  //   updatePlayButtons();
-  const currentList = getCurrentSongList();
-  const index = currentList.findIndex((s) => s.mp3 === state.currentAudio.src);
-  updatePlayButton(state.isPlaying, index);
+  updatePlayButtons();
+  //   const currentList = getCurrentSongList();
+  //   const index = currentList.findIndex((s) => s.mp3 === state.currentAudio.src);
+  //     updatePlayButton(state.isPlaying, index);
 };
 
 export const stopCurrentPlayback = () => {
@@ -79,6 +79,7 @@ export const stopCurrentPlayback = () => {
   state.currentAudio.removeEventListener("ended", handleTrackEnd);
   state.currentAudio.removeEventListener("error", handleAudioError);
   state.currentAudio = null;
+  updatePlayButtons();
 };
 
 export const playPrevious = () => {
@@ -110,8 +111,8 @@ export const handleTrackEnd = (playlist) => {
 export const handleAudioError = () => {
   showError("Error playing audio track");
   state.isPlaying = false;
-  //   updatePlayButtons();
-  const currentList = getCurrentSongList();
-  const index = currentList.findIndex((s) => s.mp3 === state.currentAudio.src);
-  updatePlayButton(false, index);
+  updatePlayButtons();
+  //   const currentList = getCurrentSongList();
+  //   const index = currentList.findIndex((s) => s.mp3 === state.currentAudio.src);
+  //   updatePlayButton(false, index);
 };
