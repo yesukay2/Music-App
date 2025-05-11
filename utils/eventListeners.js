@@ -26,6 +26,7 @@ export const setupEventListeners = () => {
   playlistList.addEventListener("click", toggleSidebar);
 
   volumeSlider.addEventListener("input", (e) => {
+    console.log(`Volume: ${e.target.value}`, window.state?.currentAudio);
     if (window.state?.currentAudio)
       window.state.currentAudio.volume = e.target.value / 100;
   });
