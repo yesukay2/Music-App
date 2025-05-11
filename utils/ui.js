@@ -10,7 +10,7 @@ import { state } from "./state.js";
 import { togglePlayPause, playSong } from "./audioPlayer.js";
 import { showPlaylistSelection } from "./playlistService.js";
 import { addToPlaylist } from "./playlistService.js";
-import { getRandomColor } from "./utils.js";
+import { getRandomColor, formatTime } from "./utils.js";
 
 export const showLoading = () => {
   document.querySelector(".loading-overlay").style.display = "flex";

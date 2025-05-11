@@ -68,8 +68,8 @@ export const togglePlayPause = () => {
 
   //   updatePlayButtons();
   const currentList = getCurrentSongList();
-  const index = currentList.findIndex((s) => s.mp3 === song.mp3);
-  updatePlayButton(true, index);
+  const index = currentList.findIndex((s) => s.mp3 === state.currentAudio.src);
+  updatePlayButton(state.isPlaying, index);
 };
 
 export const stopCurrentPlayback = () => {
@@ -112,6 +112,6 @@ export const handleAudioError = () => {
   state.isPlaying = false;
   //   updatePlayButtons();
   const currentList = getCurrentSongList();
-  const index = currentList.findIndex((s) => s.mp3 === song.mp3);
-  updatePlayButton(true, index);
+  const index = currentList.findIndex((s) => s.mp3 === state.currentAudio.src);
+  updatePlayButton(false, index);
 };
