@@ -384,7 +384,7 @@ body.dark-mode {
 }
 
 .control-btn:hover {
-  color: var(--primary);
+  color: var(--text-light);
 }
 
 .volume-slider {
