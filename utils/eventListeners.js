@@ -11,6 +11,7 @@ import {
   navLinks,
   searchInput,
   createPlaylistBtn,
+  playlistList,
 } from "./domSelectors.js";
 import { toggleSidebar, toggleTheme } from "./ui.js";
 import { togglePlayPause, playNext, playPrevious } from "./audioPlayer.js";
@@ -21,6 +22,8 @@ export const setupEventListeners = () => {
   mobileMenuBtn.addEventListener("click", toggleSidebar);
   closeBtn.addEventListener("click", toggleSidebar);
   overlay.addEventListener("click", toggleSidebar);
+  navLinks.forEach((link) => link.addEventListener("click", toggleSidebar));
+  playlistList.addEventListener("click", toggleSidebar);
 
   volumeSlider.addEventListener("input", (e) => {
     if (window.state?.currentAudio)

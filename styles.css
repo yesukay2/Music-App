@@ -565,6 +565,10 @@ body.dark-mode {
     border-radius: 8px;
   }
 
+  .mobile-menu-btn.active {
+    display: none;
+  }
+
   .mobile-menu-btn1 {
     display: none;
   }

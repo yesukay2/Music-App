@@ -28,3 +28,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   await initializeApp();
   setupEventListeners();
 });
+
+document.querySelectorAll(".nav-link, .playlist-item").forEach((item) => {
+  item.addEventListener("click", () => {
+    closeMobileNav();
+  });
+});

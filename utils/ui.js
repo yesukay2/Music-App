@@ -4,6 +4,7 @@ import {
   themeToggle,
   body,
   playlistList,
+  mobileMenuBtn,
 } from "./domSelectors.js";
 import { state } from "./state.js";
 import { togglePlayPause, playSong } from "./audioPlayer.js";
@@ -26,13 +27,22 @@ export const showError = (msg) => {
   setTimeout(() => (el.style.display = "none"), 5000);
 };
 
-export const updatePlayButton = (playing) => {
-  document
-    .querySelectorAll(".play-btn i, .control-btn.play i")
-    .forEach((icon) => {
-      icon.classList.toggle("fa-play", !playing);
-      icon.classList.toggle("fa-pause", playing);
-    });
+export const updatePlayButtons = () => {
+  const cards = document.querySelectorAll(".music-card");
+
+  cards.forEach((card) => {
+    const icon = card.querySelector(".play-btn i");
+    const audioSrc = state.currentAudio?.src;
+    const isCurrent = card.innerHTML.includes(audioSrc); // rough check
+
+    icon.classList.remove("fa-play", "fa-pause");
+
+    if (isCurrent && state.isPlaying) {
+      icon.classList.add("fa-pause");
+    } else {
+      icon.classList.add("fa-play");
+    }
+  });
 };
 
 export const updateCurrentTrackInfo = (song) => {
@@ -87,6 +97,7 @@ export const renderMusicCards = (songs, context = state.currentContext) => {
       if (isCurrent) togglePlayPause();
       else playSong(song, context);
     });
+
     card
       .querySelector(".add-to-playlist")
       .addEventListener("click", async (e) => {
@@ -145,6 +156,13 @@ export const toggleSidebar = () => {
     ? "none"
     : "block";
 };
+
+// export function closeMobileNav() {
+//   const nav = document.querySelector(".nav");
+//   const hamburger = document.querySelector(".hamburger");
+//   nav.classList.remove("nav-open");
+//   hamburger.classList.remove("active");
+// }
 
 export const toggleTheme = () => {
   body.classList.toggle("dark-mode");
