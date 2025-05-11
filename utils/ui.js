@@ -45,13 +45,37 @@ export const updatePlayButtons = () => {
   });
 };
 
+// export const updatePlayButton = (playing, index = null) => {
+//   const cards = document.querySelectorAll(".music-card");
+//   const trackBarIcon = document.querySelector(".control-btn.play i");
+//   if (trackBarIcon) {
+//     trackBarIcon.classList.remove("fa-play", "fa-pause");
+//     trackBarIcon.classList.add(state.isPlaying ? "fa-pause" : "fa-play");
+//   }
+//   cards.forEach((card, i) => {
+//     const icon = card.querySelector(".play-btn i");
+
+//     if (index !== null && i === index) {
+//       icon.classList.toggle("fa-play", !playing);
+//       icon.classList.toggle("fa-pause", playing);
+//     } else {
+//       icon.classList.remove("fa-pause");
+//       icon.classList.add("fa-play");
+//     }
+//   });
+// };
+
 export const updatePlayButton = (playing, index = null) => {
   const cards = document.querySelectorAll(".music-card");
+
+  // ✅ Track bar button
   const trackBarIcon = document.querySelector(".control-btn.play i");
   if (trackBarIcon) {
     trackBarIcon.classList.remove("fa-play", "fa-pause");
-    trackBarIcon.classList.add(state.isPlaying ? "fa-pause" : "fa-play");
+    trackBarIcon.classList.add(playing ? "fa-pause" : "fa-play");
   }
+
+  // ✅ Card buttons
   cards.forEach((card, i) => {
     const icon = card.querySelector(".play-btn i");
 
