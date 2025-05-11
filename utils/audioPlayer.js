@@ -37,7 +37,7 @@ export const playSong = async (
     state.currentPlaylist = playlist;
     audio.volume = document.querySelector(".volume-slider").value / 100;
     updateCurrentTrackInfo(song);
-    // updatePlayButtons();
+    updatePlayButtons();
     const currentList = getCurrentSongList();
     const index = currentList.findIndex((s) => s.mp3 === song.mp3);
     updatePlayButton(true, index);
