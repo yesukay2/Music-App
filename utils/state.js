@@ -8,3 +8,5 @@ export const state = {
   currentTrackIndex: -1,
   currentPlaylist: null,
 };
+
+// window.state = state;

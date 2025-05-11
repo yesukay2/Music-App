@@ -17,6 +17,7 @@ import { toggleSidebar, toggleTheme } from "./ui.js";
 import { togglePlayPause, playNext, playPrevious } from "./audioPlayer.js";
 import { handleNavigation, handleSearch } from "./navigation.js";
 import { createNewPlaylist } from "./playlistService.js";
+import { state } from "./state.js";
 
 export const setupEventListeners = () => {
   mobileMenuBtn.addEventListener("click", toggleSidebar);
@@ -26,9 +27,8 @@ export const setupEventListeners = () => {
   playlistList.addEventListener("click", toggleSidebar);
 
   volumeSlider.addEventListener("input", (e) => {
-    console.log(`Volume: ${e.target.value}`, window.state?.currentAudio);
-    if (window.state?.currentAudio)
-      window.state.currentAudio.volume = e.target.value / 100;
+    console.log(`Volume: ${e.target.value}`, state?.currentAudio);
+    if (state?.currentAudio) state.currentAudio.volume = e.target.value / 100;
   });
 
   themeToggle.addEventListener("click", toggleTheme);
