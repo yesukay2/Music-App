@@ -162,7 +162,7 @@ export const renderPlaylists = () => {
         state.currentPlaylist?.id === pl.id ? "active" : ""
       }" data-id="${pl.id}">
         <div class="playlist-color" style="background: ${getRandomColor()}"></div>
-        <span>${pl.name} (${pl.songs.length})</span>
+        <span>${pl.name}</span>
         <div class="playlist-actions">
           <button class="play-playlist"><i class="fas fa-play"></i></button>
           <button class="add-song-btn">+</button>
