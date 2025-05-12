@@ -13,7 +13,7 @@ import {
   createPlaylistBtn,
   playlistList,
 } from "./domSelectors.js";
-import { toggleSidebar, toggleTheme } from "./ui.js";
+import { toggleSidebar, toggleTheme, updateSectionTitle } from "./ui.js";
 import { togglePlayPause, playNext, playPrevious } from "./audioPlayer.js";
 import { handleNavigation, handleSearch } from "./navigation.js";
 import { createNewPlaylist } from "./playlistService.js";

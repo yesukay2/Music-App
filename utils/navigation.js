@@ -1,5 +1,5 @@
 import { state } from "./state.js";
-import { renderMusicCards, renderPlaylists } from "./ui.js";
+import { renderMusicCards, renderPlaylists, updateSectionTitle } from "./ui.js";
 
 export const handleNavigation = (e) => {
   e.preventDefault();
@@ -11,12 +11,14 @@ export const handleNavigation = (e) => {
 
   switch (target.textContent.trim()) {
     case "Recent":
+      updateSectionTitle("Recently Played");
       renderMusicCards(state.recents, { type: "recents", data: null });
       break;
     case "Playlists":
       renderPlaylists();
       break;
     default:
+      updateSectionTitle("Your Library");
       renderMusicCards(state.songsData, { type: "library", data: null });
   }
 };

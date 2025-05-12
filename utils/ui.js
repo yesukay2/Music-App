@@ -27,6 +27,11 @@ export const showError = (msg) => {
   setTimeout(() => (el.style.display = "none"), 5000);
 };
 
+export const updateSectionTitle = (title) => {
+  const titleEl = document.getElementById("section-title");
+  if (titleEl) titleEl.textContent = title;
+};
+
 export const updatePlayButtons = () => {
   const cards = document.querySelectorAll(".music-card");
 
@@ -135,6 +140,7 @@ export const renderMusicCards = (songs, context = state.currentContext) => {
 };
 
 export const renderPlaylists = () => {
+  updateSectionTitle("Playlist");
   playlistList.innerHTML = state.playlists
     .map(
       (pl) => `
