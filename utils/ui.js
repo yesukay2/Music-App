@@ -45,26 +45,6 @@ export const updatePlayButtons = () => {
   });
 };
 
-// export const updatePlayButton = (playing, index = null) => {
-//   const cards = document.querySelectorAll(".music-card");
-//   const trackBarIcon = document.querySelector(".control-btn.play i");
-//   if (trackBarIcon) {
-//     trackBarIcon.classList.remove("fa-play", "fa-pause");
-//     trackBarIcon.classList.add(state.isPlaying ? "fa-pause" : "fa-play");
-//   }
-//   cards.forEach((card, i) => {
-//     const icon = card.querySelector(".play-btn i");
-
-//     if (index !== null && i === index) {
-//       icon.classList.toggle("fa-play", !playing);
-//       icon.classList.toggle("fa-pause", playing);
-//     } else {
-//       icon.classList.remove("fa-pause");
-//       icon.classList.add("fa-play");
-//     }
-//   });
-// };
-
 export const updatePlayButton = (playing, index = null) => {
   const cards = document.querySelectorAll(".music-card");
 
@@ -201,13 +181,6 @@ export const toggleSidebar = () => {
     ? "none"
     : "block";
 };
-
-// export function closeMobileNav() {
-//   const nav = document.querySelector(".nav");
-//   const hamburger = document.querySelector(".hamburger");
-//   nav.classList.remove("nav-open");
-//   hamburger.classList.remove("active");
-// }
 
 export const toggleTheme = () => {
   body.classList.toggle("dark-mode");
